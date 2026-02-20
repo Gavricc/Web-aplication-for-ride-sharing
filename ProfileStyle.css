@@ -1,0 +1,78 @@
+/* Resetovanje osnovnih podešavanja */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f2f5; /* Svetlo siva pozadina */
+}
+
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* Glavna klasa za dugmad */
+.btn {
+    display: block;          /* Ovo ih forsira da budu jedan ispod drugog */
+    width: 100%;             /* Širina preko celog belog pravougaonika */
+    padding: 16px;
+    margin: 12px 0;          /* Razmak između dugmića */
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;   /* Briše podvučenu liniju pošto su ovo <a> tagovi */
+    transition: all 0.2s ease-in-out;
+    text-align: center;
+}
+
+/* Stil za: Izaberi vožnju */
+.btn-search {
+    background-color: #00aff5;
+    color: white;
+}
+
+.btn-search:hover {
+    background-color: #008ecc;
+}
+
+/* Stil za: Objavi vožnju */
+.btn-publish {
+    background-color: #ffffff;
+    color: #00aff5;
+    border: 2px solid #00aff5;
+}
+
+.btn-publish:hover {
+    background-color: #f0faff;
+}
+
+/* Stil za: Odjavi se */
+.btn-logout {
+    background-color: #fce8e8;
+    color: #e53935;
+    margin-top: 30px; /* Dodatni razmak da se odvoji od ostalih */
+}
+
+.btn-logout:hover {
+    background-color: #f8d7da;
+}
