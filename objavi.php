@@ -1,3 +1,31 @@
+<?php
+require_once ("db.php");
+session_start();
+if(!isset($_SESSION['user'])){
+    header("Location: login.php");
+    exit();
+} 
+echo "Dobrodošli, " . $_SESSION['user'] ['id']. "!";
+
+if(isset($_POST['submit'])){
+    $polaziste = htmlspecialchars($_POST['polaziste']);
+    $odrediste = htmlspecialchars($_POST['odrediste']);
+    $vreme_polaska = htmlspecialchars($_POST['vreme_polaska']);
+    $slobodna_mesta = htmlspecialchars($_POST['slobodna_mesta']);
+    $cena = htmlspecialchars($_POST['cena']);
+    $opis = htmlspecialchars($_POST['opis']);
+    $user_id = $_SESSION['user']['id'];
+
+    $db = new DataBase();
+    if($db->insertRide($polaziste,$odrediste,$vreme_polaska,$slobodna_mesta,$cena,$opis,$user_id)){
+        echo "Voznja je uspesno objavljena!";
+    } else {
+        echo "Greska prilikom objavljivanja voznje.";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,13 +54,13 @@
         </div>
         <div>
             <label for="cena">Cena:</label>
-            <input type="number" id="cena" name="cena" step="0.01" min="0" required>
+            <input type="number" id="cena" name="cena" step="100" min="0" required>
         </div>
         <div>
             <label for="opis">Opis:</label>
             <textarea id="opis" name="opis" rows="5" cols="50"></textarea>
         </div>
-        <button type="submit">Objavi voznju</button>
+        <button type="submit"name="submit">Objavi voznju</button>
     </form>
 </body>
 </html>

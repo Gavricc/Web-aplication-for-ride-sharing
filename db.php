@@ -64,8 +64,15 @@ function checkUser($email,$password){
         
     }
 
+function insertRide($polaziste,$odrediste,$vreme_polaska,$slobodna_mesta,$cena,$opis,$user_id){
+    $statement="INSERT INTO rides (driver_id,car_id,polaziste,odrediste,vreme_polaska,slobodna_mesta,cena_po_osobi,opis) VALUES (?,?,?,?,?,?,?,?)";
+    try{
+        $sql=$this->conn->prepare($statement);
+        $sql->execute([$user_id,null,$polaziste,$odrediste,$vreme_polaska,$slobodna_mesta,$cena,$opis]);
+        return true;
+        }   catch(PDOException $e){ return false; }
+
 
 
 }
-
-
+}
