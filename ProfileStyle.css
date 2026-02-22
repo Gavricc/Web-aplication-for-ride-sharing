@@ -1,4 +1,4 @@
-/* Resetovanje osnovnih podešavanja */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,11 +7,13 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f2f5; /* Svetlo siva pozadina */
+    background-color: #f0f2f5; 
 }
 
 .container {
@@ -23,39 +25,66 @@ body {
     width: 100%;
     max-width: 350px;
 }
+.odakle{
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+
+}
+.odakle div {
+    margin-bottom: 15px;
+    background: white;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+
+}
+.odakle label {
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 8px;
+color: #555;
+}
+
+.odakle input {
+width: 100%;
+padding: 12px;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 16px;
+outline: none;
+transition: border-color 0.2s;
+}
+
+.odakle input:focus {
+border-color: #00aff5; /
+}
 
 h2 {
     margin-bottom: 25px;
     color: #333;
 }
 
-/* Glavna klasa za dugmad */
+
 .btn {
-    display: block;          /* Ovo ih forsira da budu jedan ispod drugog */
-    width: 100%;             /* Širina preko celog belog pravougaonika */
+    display: block;          
+    width: 100%;             
     padding: 16px;
-    margin: 12px 0;          /* Razmak između dugmića */
+    margin: 12px 0;          
     border: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    text-decoration: none;   /* Briše podvučenu liniju pošto su ovo <a> tagovi */
+    text-decoration: none;  
     transition: all 0.2s ease-in-out;
     text-align: center;
 }
 
-/* Stil za: Izaberi vožnju */
-.btn-search {
-    background-color: #00aff5;
-    color: white;
-}
-
-.btn-search:hover {
-    background-color: #008ecc;
-}
-
-/* Stil za: Objavi vožnju */
 .btn-publish {
     background-color: #ffffff;
     color: #00aff5;
@@ -66,11 +95,11 @@ h2 {
     background-color: #f0faff;
 }
 
-/* Stil za: Odjavi se */
+
 .btn-logout {
     background-color: #fce8e8;
     color: #e53935;
-    margin-top: 30px; /* Dodatni razmak da se odvoji od ostalih */
+    margin-top: 30px; 
 }
 
 .btn-logout:hover {

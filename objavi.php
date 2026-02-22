@@ -5,7 +5,7 @@ if(!isset($_SESSION['user'])){
     header("Location: login.php");
     exit();
 } 
-echo "Dobrodošli, " . $_SESSION['user'] ['id']. "!";
+echo "Dobrodošli, " . $_SESSION['user'] ['ime']. "!";
 
 if(isset($_POST['submit'])){
     $polaziste = htmlspecialchars($_POST['polaziste']);
@@ -62,5 +62,6 @@ if(isset($_POST['submit'])){
         </div>
         <button type="submit"name="submit">Objavi voznju</button>
     </form>
+    <a href="profile.php" class="btn btn-publish"> Pretraga voznji</a>
 </body>
 </html>

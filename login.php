@@ -33,20 +33,20 @@ if (isset($_POST["email"])){
 $email=htmlspecialchars($_POST["email"]);}
 
 if (isset($_POST["password"])){
-$password=$_POST["password"];}
+$password=htmlspecialchars($_POST["password"]);}
 
 if (isset($_POST["confirm_password"])){
-$confirm_password=$_POST["confirm_password"];}
+$confirm_password=htmlspecialchars($_POST["confirm_password"]);}
 
 if (isset($_POST["birthday"])){
 $birthday=htmlspecialchars($_POST["birthday"]);}
 
 if (isset($_POST["number"])){
 $telefon=htmlspecialchars($_POST["number"]);}
-}
+
 
 if (!$name) {
-$errors[]="Unesite ime i prezime";
+$errors['name']="Unesite ime i prezime";
 }
 if (!$email) {
 $errors[]="Unesite email";
@@ -55,7 +55,7 @@ if (!$password) {
 $errors[]="Unesite lozinku";
 }
 if ($password != $confirm_password) {
-$errors[]="Lozinke se ne poklapaju";
+$errors['lozinke']="Lozinke se ne poklapaju";
 }
 if (!$birthday) {
 $errors[]="Unesite datum rođenja";
@@ -68,8 +68,9 @@ if (empty($errors)) {
 $success = $d->insertUser($name, $surname, $email, $password, $birthday, $telefon, date("Y-m-d"));
 }
 if ($success){
-$messages[]="Uspešno ste se registrovali";
-}else {$messages[]="Registracija nije uspela";}
+echo "Uspešno ste se registrovali";
+}else {echo "Registracija nije uspela";}
+}
 
 
 ?>
@@ -84,6 +85,7 @@ $messages[]="Uspešno ste se registrovali";
 </head>
 <body>
     <div class="container">
+        
         <div class="tabs">
             <button class="tab-btn active" onclick="switchForm('login')">Login</button>
             <button class="tab-btn" onclick="switchForm('register')">Register</button>
@@ -104,6 +106,7 @@ $messages[]="Uspešno ste se registrovali";
         <form id="register" class="form-section" method="POST">
             <div class="form-group">
                 <label for="register-name">Full Name</label>
+                
                 <input type="text" id="register-name" name="name" required>
             </div>
             <div class="form-group">
@@ -124,6 +127,7 @@ $messages[]="Uspešno ste se registrovali";
             </div>
             <div class="form-group">
                 <label for="register-confirm">Confirm Password</label>
+                
                 <input type="password" id="register-confirm" name="confirm_password" required>
             </div>
             <button type="submit" name="Register">Register</button>
