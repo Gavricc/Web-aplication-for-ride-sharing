@@ -76,8 +76,19 @@ function insertRide($polaziste,$odrediste,$vreme_polaska,$slobodna_mesta,$cena,$
 
 }
 
-function getRides($from,$to,$time=null){
+function getRides($from,$to=null,$time=null){
 
+if ($to==null){
+$statement="SELECT * FROM rides where polaziste=? and vreme_polaska>=NOW()";
+try{
+$sql=$this->conn->prepare($statement);
+$sql->execute([$from]);
+
+}catch(PDOException $e){ return []; }
+return $sql->fetchAll();
+
+
+}
 if($time!=null){
 $statement="SELECT * FROM rides where polaziste=? and odrediste=? and DATE(vreme_polaska)>=?";
 try{

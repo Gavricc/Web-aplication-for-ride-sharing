@@ -46,7 +46,7 @@ $telefon=htmlspecialchars($_POST["number"]);}
 
 
 if (!$name) {
-$errors['name']="Unesite ime i prezime";
+$errors[]="Unesite ime i prezime";
 }
 if (!$email) {
 $errors[]="Unesite email";
@@ -69,7 +69,7 @@ $success = $d->insertUser($name, $surname, $email, $password, $birthday, $telefo
 }
 if ($success){
 echo "Uspešno ste se registrovali";
-}else {echo "Registracija nije uspela";}
+}else {echo "Registracija nije uspela "; print_r($errors);}
 }
 
 
@@ -97,7 +97,7 @@ echo "Uspešno ste se registrovali";
                 <input type="email" id="login-email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="login-password">Password</label>
+                <label for="login-password">Sifra</label>
                 <input type="password" id="login-password" name="password" required>
             </div>
             <button type="submit"name= "Login">Login</button>
@@ -105,16 +105,16 @@ echo "Uspešno ste se registrovali";
 
         <form id="register" class="form-section" method="POST">
             <div class="form-group">
-                <label for="register-name">Full Name</label>
+                <label for="register-name">Ime i Prezime</label>
                 
                 <input type="text" id="register-name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="register-number">Mobile Number</label>
+                <label for="register-number">Broj Telefona</label>
                 <input type="text" id="register-number" name="number" required>
             </div>
             <div class="form-group">
-                <label for="register-birthday">Birthday</label>
+                <label for="register-birthday">Datum rodjenja</label>
                 <input type="date" id="register-birthday" name="birthday" required>
             </div>
             <div class="form-group">
@@ -122,15 +122,15 @@ echo "Uspešno ste se registrovali";
                 <input type="email" id="register-email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="register-password">Password</label>
+                <label for="register-password">Sifra</label>
                 <input type="password" id="register-password" name="password" required>
             </div>
             <div class="form-group">
-                <label for="register-confirm">Confirm Password</label>
+                <label for="register-confirm"> Ponovite sifru</label>
                 
                 <input type="password" id="register-confirm" name="confirm_password" required>
             </div>
-            <button type="submit" name="Register">Register</button>
+            <button type="submit" name="Register">Registracija</button>
         </form>
     </div>
 

@@ -80,11 +80,24 @@ function getHtml($rides){
 </body>
 
 <?php
-
+$user_id=$_SESSION['user']['id'];
+//cookie se koriste da zapamte poslednje birano odrediste i pri sledecem biranju voznji da preporuce korisniku voznje cija je polazna tacka poslednje birano odrediste 
+if (isset($_COOKIE[$user_id])){
+    if(!isset($_POST['search']) && !isset($_POST['reserve'])){
+$from=$_COOKIE[$user_id];
+$rides=$d->getRides($from);
+if(count($rides)>0){
+    $messages[]="Preporučujemo vožnje " . $from;
+    echo getHtml($rides);
+}
+}
+}
 
 if(isset($_POST['search'])){
     $from=htmlspecialchars($_POST['polaziste']);
     $to=htmlspecialchars($_POST['odrediste']);
+    $_SESSION['from']=$from;
+    $_SESSION['to']=$to;
     if(isset($_POST['vreme_polaska'])){
         $time=htmlspecialchars($_POST['vreme_polaska']);
     } else {
@@ -100,12 +113,16 @@ if(isset($_POST['search'])){
 }
 if(isset($_POST['reserve']) && isset($_GET['id'])){
     $ride_id=htmlspecialchars($_GET['id']);
-    $user_id=$_SESSION['user']['id'];
     if($d->reserveRide($ride_id,$user_id)){
+        if(isset($_SESSION['to'])){
+             $to=$_SESSION['to'];
+            //cookie su postavljeni na 10 dana tako da nema potrebe da ih ikada obrisemo, ali kada bih hteo samo bih uradio setcookie("preporuka", "", time() - 3600);
+            setcookie($user_id, $to,time()+(10*24*60*60));
+        }
         $driver=$d->getDriverNameByRideId($ride_id);
 
         echo "Uspešno rezervisano mesto, Vas vozac je ".$driver['ime']." a kontakt telefon je: ".$driver['telefon'];
-    } else {
+        } else {
         $errors[]="Greska prilikom rezervacije mesta.";
     }
 
